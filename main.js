@@ -12,7 +12,6 @@ function ThoughtCanvas(canvas_elem) {
 	this.thoughts = [];
 
 	this.add_thought = function(thought) {
-		console.log(this.thoughts);
 		this.thoughts.push(thought);
 	}
 
@@ -24,7 +23,6 @@ function ThoughtCanvas(canvas_elem) {
 
 		thought.size.x = 2*padding+textsize.width;
 		thought.size.y = 2*padding;
-		console.log(thought.size);
 
 		this.ctx.fillStyle = 'pink';
 		this.ctx.fillRect(x, y, thought.size.x, thought.size.y);
