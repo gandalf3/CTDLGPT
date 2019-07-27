@@ -1,5 +1,6 @@
 'use_strict';
 
+
 function Thought(text) {
 	this.text = text;
 	this.size = {x: null, y: null};
@@ -15,6 +16,7 @@ function ThoughtCanvas(canvas_elem) {
 		this.thoughts.push(thought);
 	}
 
+
 	// draw a single thought to the canvas at position x, y
 	this.draw_thought = (thought, x, y) => {
 		let padding = 10;
@@ -23,6 +25,7 @@ function ThoughtCanvas(canvas_elem) {
 
 		thought.size.x = 2*padding+textsize.width;
 		thought.size.y = 2*padding;
+
 
 		this.ctx.fillStyle = 'pink';
 		this.ctx.fillRect(x, y, thought.size.x, thought.size.y);
@@ -42,7 +45,6 @@ function ThoughtCanvas(canvas_elem) {
 			this.draw_thought(this.thoughts[i], next_x, 10);
 		}
 	}
-
 }
 
 let canv = document.getElementById('thought-canvas');
@@ -61,4 +63,4 @@ inp.addEventListener('keyup', event => {
 
 // exports.Thought = Thought;
 // exports.ThoughtCanvas = ThoughtCanvas;
-// Adding a test thing hi 
+// Adding a test thing hi;
