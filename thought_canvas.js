@@ -54,13 +54,14 @@ function ThoughtCanvas(canvas_elem) {
 		clapdiv.style.fontSize = 90 + "px";
 
 		// let canvas_bounds = this.canvas.getBoundingClientRect();
-		clapdiv.style.left = window.innerWidth/2 + "px";
-		clapdiv.style.top = window.innerHeight/2 + "px";
+		clapdiv.style.left = 0 + "px";
+		clapdiv.style.top = 50 + "px";
 		document.body.appendChild(clapdiv);
 
 		window.setTimeout(() => {
 			clapdiv.remove();
-		}, 3000);
+			clapdiv.animate = "change";
+		}, 2000);
 	}
 
 }
