@@ -61,3 +61,4 @@ inp.addEventListener('keyup', event => {
 
 // exports.Thought = Thought;
 // exports.ThoughtCanvas = ThoughtCanvas;
+// Adding a test thing hi 
