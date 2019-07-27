@@ -1,4 +1,7 @@
 const electron = require('electron')
+// const { Thought, ThoughtCanvas } = require('./thought_canvas')
+const url = require('url')
+const path = require('path')
 
 function createWindow() {
 	let win = new electron.BrowserWindow({
@@ -13,3 +16,4 @@ function createWindow() {
 }
 
 electron.app.on('ready', createWindow)
+

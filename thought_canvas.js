@@ -42,8 +42,8 @@ function ThoughtCanvas(canvas_elem) {
 			this.draw_thought(this.thoughts[i], next_x, 10);
 		}
 	}
-}
 
+}
 
 let canv = document.getElementById('thought-canvas');
 var TC = new ThoughtCanvas(canv);
@@ -57,3 +57,7 @@ inp.addEventListener('keyup', event => {
 
 	inp.value = '';
 });
+
+
+// exports.Thought = Thought;
+// exports.ThoughtCanvas = ThoughtCanvas;
