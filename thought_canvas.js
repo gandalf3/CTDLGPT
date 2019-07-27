@@ -19,15 +19,15 @@ function ThoughtCanvas(canvas_elem) {
 
 	// draw a single thought to the canvas at position x, y
 	this.draw_thought = (thought, x, y) => {
-		let padding = 10;
-		this.ctx.font = '12px sans-serif';
+		let padding = 18;
+		this.ctx.font = '20px Comic Sans MS';
 		let textsize = this.ctx.measureText(thought.text);
 
 		thought.size.x = 2*padding+textsize.width;
 		thought.size.y = 2*padding;
 
 
-		this.ctx.fillStyle = 'pink';
+		this.ctx.fillStyle = 'cyan';
 		this.ctx.fillRect(x, y, thought.size.x, thought.size.y);
 
 		this.ctx.fillStyle = 'black';
