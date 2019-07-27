@@ -13,46 +13,32 @@
 
 
 </style>
-</head>
-
-<h1>
-  <em>M</em>
-  <em class="planet left">I</em>
-  <em>T</em>
-  <em>T</em>
-  <em class="planet right">E</em>
-  <em>N</em>
-  <em>S</em>
-</h1>
-<body>	
-	
-		<div id="input-bar">
-				<input id="input-bar-input" type="text" placeholder="Type a thought"></input>
-			</div>
-			<div id="thought-canvas-container">
-				<canvas width="1200px" height="900px" id="thought-canvas">
-				</canvas>
-			</div>
-		
-			<script src="./thought_canvas.js"></script>
-			
 <style>
-body {
+#mittens_container {
   margin: 0;
   height: 100%;
+  z-index:-1;
   overflow: hidden;
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
   display: flex;
   justify-content: center;
   align-items: center;
   background-image: url("https://cdn.discordapp.com/attachments/366864482581872641/578129858723315713/IMG_1791.JPG");
+  background-size:contain;
+  background-position:center;
+  background-repeat:no-repeat;
   color: #ccc;
 }
 
 
 html::before,
 html::after,
-body::before,
-body::after {
+#mittens_container::before,
+#mittens_container::after {
   content: "";
   position: center;
   top: 0;
@@ -130,7 +116,7 @@ html::after {
               91vw 68vh .2vmin .1vmin rgba(255,200,200,.8);
 }
 
-body::before {
+#mittens_container::before {
   box-shadow: 30vw 90vh .2vmin rgba(190,200,255,.9),
               93vw 64vh .2vmin rgba(190,200,255,.9),
               75vw 80vh .2vmin rgba(190,200,255,.9),
@@ -153,7 +139,7 @@ body::before {
               74vw 30vh .2vmin rgba(190,200,255,.9);
 }
 
-body::after {
+#mittens_container::after {
   box-shadow: 80vw 64vh .1vmin rgba(200,255,230,.7),
               32vw 45vh .1vmin rgba(200,255,230,.7),
               65vw 62vh .1vmin rgba(200,255,230,.7),
@@ -176,7 +162,7 @@ body::after {
               48vw 28vh .1vmin rgba(200,255,230,.7);
 }
 
-h1 {
+#mittens_container h1 {
   margin: 0;
   height: 12vmin;
   width: 120vmin;
@@ -185,7 +171,7 @@ h1 {
   position: relative;
 }
 
-h1::before {
+#mittens_container h1::before {
   content: "";
   display: block;
   position: center;
@@ -242,5 +228,30 @@ em.planet.right {
   }
 }
 </style>
+</head>
+
+<body>	
+	
+                        <div id="mittens_container">
+                        <h1>
+                          <em>M</em>
+                          <em class="planet left">I</em>
+                          <em>T</em>
+                          <em>T</em>
+                          <em class="planet right">E</em>
+                          <em>N</em>
+                          <em>S</em>
+                        </h1>
+                      </div>
+		<div id="input-bar">
+				<input id="input-bar-input" type="text" placeholder="Type a thought"></input>
+			</div>
+			<div id="thought-canvas-container">
+				<canvas width="1200px" height="900px" id="thought-canvas">
+				</canvas>
+			</div>
+		
+			<script src="./thought_canvas.js"></script>
+			
 	
 </body>
