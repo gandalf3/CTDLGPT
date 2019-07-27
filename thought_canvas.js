@@ -45,6 +45,24 @@ function ThoughtCanvas(canvas_elem) {
 			this.draw_thought(this.thoughts[i], next_x, 10);
 		}
 	}
+
+	this.clap = () => {
+		var clapdiv = document.createElement('div');
+		clapdiv.textContent = "👏";
+		clapdiv.style.position = "fixed";
+		clapdiv.style.display = "inline-block";
+		clapdiv.style.fontSize = 90 + "px";
+
+		// let canvas_bounds = this.canvas.getBoundingClientRect();
+		clapdiv.style.left = window.innerWidth/2 + "px";
+		clapdiv.style.top = window.innerHeight/2 + "px";
+		document.body.appendChild(clapdiv);
+
+		window.setTimeout(() => {
+			clapdiv.remove();
+		}, 3000);
+	}
+
 }
 
 let canv = document.getElementById('thought-canvas');
@@ -56,10 +74,13 @@ inp.addEventListener('keyup', event => {
 
 	TC.add_thought(new Thought(inp.value));
 	TC.draw();
+	TC.clap();
 
 	inp.value = '';
 });
 
+// focus the input by default
+inp.focus();
 
 // exports.Thought = Thought;
 // exports.ThoughtCanvas = ThoughtCanvas;
