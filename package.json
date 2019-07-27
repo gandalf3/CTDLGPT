@@ -1,0 +1,18 @@
+{
+  "name": "ctdlgpt",
+  "version": "0.0.1",
+  "description": "Cool To-Do List Game Program Thing",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^5.0.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gandalf3/CTDLGPT.git"
+  }
+}
