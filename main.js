@@ -60,5 +60,5 @@ const mainMenuTemplate = [
 	}];
 	const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
 
-	Menu.setApplicationMenu(mainMenu);
+	// Menu.setApplicationMenu(mainMenu);
 	
