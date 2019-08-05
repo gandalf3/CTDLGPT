@@ -7,8 +7,20 @@ body {
     background-color:#4E676C;
 }
 
+#input-bar {
+    text-align:center;
+}
+#input-bar-input {
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    max-width: 500px;
+    width: 80vw;
+    font-size: 17px;
+    font-family: 'Josefin Sans';
+}
+
 #thought-canvas-container {
-    border: 1px solid black;
     display: flex;
     height:100%;
     flex-wrap: wrap;
