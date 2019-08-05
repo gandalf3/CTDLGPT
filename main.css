@@ -18,6 +18,9 @@ body {
     width: 80vw;
     font-size: 17px;
     font-family: 'Josefin Sans';
+    border:none;
+    outline: none;
+    background: cyan;
 }
 
 #thought-canvas-container {
