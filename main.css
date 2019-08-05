@@ -13,6 +13,7 @@ body {
     height:100%;
     flex-wrap: wrap;
     align-items:flex-start;
+    align-content:flex-start;
 }
 .thought {
     font-family:'Josefin Sans';
