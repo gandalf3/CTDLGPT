@@ -15,12 +15,31 @@ body {
     align-items:flex-start;
     align-content:flex-start;
 }
+
 .thought {
     font-family:'Josefin Sans';
     background-color:magenta;
     display:inline-block;
     margin:5px;
     padding:10px;
+    position:relative;
+}
+.thought .closebutton {
+    border:none;
+    visibility:hidden;
+    display: inline-block;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 0;
+    right: 0;
+    border: none;
+    background: none;
+    padding:0;
+    cursor:pointer;
+}
+.thought:hover .closebutton {
+    visibility:visible;
 }
 
 

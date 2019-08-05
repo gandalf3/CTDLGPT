@@ -7,6 +7,18 @@ function Thought(text) {
    this.elem.classList.add("thought");
    this.elem.textContent = this.text;
 
+   let closebtn = document.createElement('button')
+   closebtn.classList.add("closebutton")
+   closebtn.textContent = 'X'
+   closebtn.addEventListener('click', (ev) => {
+      TC.remove_thought(this)
+   })
+   this.elem.appendChild(closebtn)
+
+   this.remove = () => {
+      this.elem.remove()
+   }
+
    this.toJSON = function() {
       return { text: this.text };
    }
@@ -22,6 +34,19 @@ function ThoughtCanvas(canvas_container) {
       this.thoughts.push(thought);
 
       window.save_thoughts(this.thoughts);
+   }
+
+   this.remove_thought = function(thought) {
+      let idx = this.thoughts.indexOf(thought)
+
+      // indexOf returns -1 if thought doesn't exist, so we don't remove anything in that case
+      if (idx != -1) { //
+	 // delete 1 element starting at idx
+	 this.thoughts.splice(idx, 1)
+      }
+      thought.remove()
+
+      window.save_thoughts(this.thoughts)
    }
 
    this.clap = () => {
