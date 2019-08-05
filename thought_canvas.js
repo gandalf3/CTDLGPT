@@ -1,88 +1,71 @@
 'use_strict';
 
-
 function Thought(text) {
-	this.text = text;
-	this.size = {x: null, y: null};
-	this.color = null;
+   this.text = text;
+
+   this.elem = document.createElement("div");
+   this.elem.classList.add("thought");
+   this.elem.textContent = this.text;
+
+   this.toJSON = function() {
+      return { text: this.text };
+   }
 }
 
-function ThoughtCanvas(canvas_elem) {
-	this.canvas = canvas_elem;
-	this.ctx = canvas_elem.getContext('2d');
-	this.thoughts = [];
+function ThoughtCanvas(canvas_container) {
+   this.canvas_container = canvas_container;
+   this.thoughts = [];
 
-	this.add_thought = function(thought) {
-		this.thoughts.push(thought);
-	}
+   this.add_thought = function(thought_text) {
+      let thought = new Thought(thought_text)
+      this.canvas_container.appendChild(thought.elem);
+      this.thoughts.push(thought);
 
+      window.save_thoughts(this.thoughts);
+   }
 
-	// draw a single thought to the canvas at position x, y
-	this.draw_thought = (thought, x, y) => {
-		let padding = 18;
-		this.ctx.font = '20px Comic Sans MS';
-		let textsize = this.ctx.measureText(thought.text);
+   this.clap = () => {
+      var clapdiv = document.createElement('div');
+      clapdiv.textContent = "👏";
+      clapdiv.style.position = "fixed";
+      clapdiv.style.display = "inline-block";
+      clapdiv.style.fontSize = 90 + "px";
 
-		thought.size.x = 2*padding+textsize.width;
-		thought.size.y = 2*padding;
+      // let canvas_bounds = this.canvas.getBoundingClientRect();
+      clapdiv.style.left = 0 + "px";
+      clapdiv.style.top = 50 + "px";
+      document.body.appendChild(clapdiv);
 
+      window.setTimeout(() => {
+	 clapdiv.remove();
+	 clapdiv.animate = "change";
+      }, 2000);
+   }
 
-		this.ctx.fillStyle = 'cyan';
-		this.ctx.fillRect(x, y, thought.size.x, thought.size.y);
+   this.initialize_thoughtlist = (thoughtlist) => {
+      for (thought of thoughtlist) {
+	 this.add_thought(thought.text)
+      }
+   }
 
-		this.ctx.fillStyle = 'black';
-		this.ctx.fillText(thought.text, x+padding, y+padding);
-	}
-
-	// draw all thoughts in this.thoughts to the canvas
-	this.draw = () => {
-		// blank everything
-		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-		var next_x = 0;
-		for (let i=0; i<this.thoughts.length; i++) {
-			next_x += ( i == 0 ? 0 : this.thoughts[i-1].size.x + 10);
-			this.draw_thought(this.thoughts[i], next_x, 10);
-		}
-	}
-
-	this.clap = () => {
-		var clapdiv = document.createElement('div');
-		clapdiv.textContent = "👏";
-		clapdiv.style.position = "fixed";
-		clapdiv.style.display = "inline-block";
-		clapdiv.style.fontSize = 90 + "px";
-
-		// let canvas_bounds = this.canvas.getBoundingClientRect();
-		clapdiv.style.left = 0 + "px";
-		clapdiv.style.top = 50 + "px";
-		document.body.appendChild(clapdiv);
-
-		window.setTimeout(() => {
-			clapdiv.remove();
-			clapdiv.animate = "change";
-		}, 2000);
-	}
+   window.load_thoughts(this.initialize_thoughtlist)
 
 }
 
-let canv = document.getElementById('thought-canvas');
+let canv = document.getElementById('thought-canvas-container');
 var TC = new ThoughtCanvas(canv);
 
 let inp = document.getElementById('input-bar-input')
 inp.addEventListener('keyup', event => {
-	if (event.code != 'Enter') { return; }
+   if (event.code != 'Enter') { return; }
 
-	TC.add_thought(new Thought(inp.value));
-	TC.draw();
-	TC.clap();
+   TC.add_thought(inp.value);
+   TC.clap();
 
-	inp.value = '';
+   inp.value = '';
 });
 
 // focus the input by default
 inp.focus();
 
-// exports.Thought = Thought;
-// exports.ThoughtCanvas = ThoughtCanvas;
 // Adding a test thing hi;
