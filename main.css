@@ -1,7 +1,5 @@
 html, body {
     margin:0;
-    height:100vh;
-    width:100vw;
 }
 body {
     background-color:#4E676C;
@@ -47,7 +45,7 @@ body {
     width: 20px;
     height: 20px;
     top: 0;
-    right: 0;
+    left: 0;
     border: none;
     background: black;
     padding:0;
