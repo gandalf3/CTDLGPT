@@ -3,6 +3,8 @@ const fs = require('fs')
 const path = require('path')
 const utils = require('./utils')
 
+// functions for saving and loading thoughts to a file in a directory returned by utils.get_userdir()
+
 window.load_thoughts = function(callback) {
 	let thoughtfile = path.join(utils.get_userdir(), 'inbox.json')
 
