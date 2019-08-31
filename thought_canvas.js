@@ -1,5 +1,6 @@
 'use_strict';
 
+// A class which contains everything used by our representation of a Thougt
 function Thought(text) {
    this.text = text;
 
@@ -7,6 +8,7 @@ function Thought(text) {
    this.elem.classList.add("thought");
    this.elem.textContent = this.text;
 
+   // add a closebutton <div> and register a click event listener which removes ourselves
    let closebtn = document.createElement('button')
    closebtn.classList.add("closebutton")
    closebtn.textContent = 'X'
@@ -19,6 +21,7 @@ function Thought(text) {
       this.elem.remove()
    }
 
+   // this is a special function which is called by JSON.serialize(); returns the json representation for a Thought
    this.toJSON = function() {
       return { text: this.text };
    }
@@ -92,5 +95,7 @@ inp.addEventListener('keyup', event => {
 
 // focus the input by default
 inp.focus();
+
+// 
 
 // Adding a test thing hi;
