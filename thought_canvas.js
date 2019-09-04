@@ -35,6 +35,16 @@ function Thought(text) {
    // insert the "closebutton" div in the thought div
    this.elem.appendChild(closebtn)
 
+   //checkmark button thing
+   let checkbtn = document.createElement('button')
+   checkbtn.classList.add("checkbutton")
+   checkbtn.textContent = '✔'
+   //checkbtn.addEventListener('click', (ev) => {
+     // TC.sort_thought(this)
+  // })
+
+  this.elem.appendChild(checkbtn)
+
    // function for other code to call when they want to remove us 
    this.remove = () => {
       // for now all we do is remove this.elem from the document
