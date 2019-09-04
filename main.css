@@ -37,6 +37,11 @@ body {
     padding:10px;
     position:relative;
 }
+
+.thought:hover .closebutton {
+    visibility:visible;
+}
+
 .thought .closebutton {
     border:none;
     visibility:hidden;
@@ -47,15 +52,32 @@ body {
     top: 0;
     left: 0;
     border: none;
-    background: black;
+    background: red;
     padding:0;
     cursor:pointer;
     color:white;
 }
-.thought:hover .closebutton {
+
+
+.thought:hover .checkbutton {
     visibility:visible;
 }
 
+.thought .checkbutton {
+    border:none;
+    visibility:hidden;
+    display: inline-block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    right: 0;
+    border: none;
+    background: green;
+    padding:0;
+    cursor:pointer;
+    color:white;
+}
 
 #sort-box-container {
     display: flex;
@@ -78,5 +100,4 @@ body {
     background-color: rgba(102, 0, 102,0.4);
     color:white;
 }
-
 
