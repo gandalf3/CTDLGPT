@@ -17,8 +17,32 @@ function Thought(text) {
    })
    this.elem.appendChild(closebtn)
 
+   // this.elem.setAttribute('draggable', true)
+   // this.elem.addEventListener('dragstart', (ev) => {
+   //    console.log(ev)
+   // })
+
+   // document.body.appendChild(this.elem)
+   this.draggable = null
+
    this.remove = () => {
       this.elem.remove()
+   }
+
+   this.return_to_start = () => {
+      this.draggable.disabled = true
+      this.elem.style.transition = 'transform .5s'
+      this.elem.style.transform = 'translate(0, 0)'
+      window.setTimeout(() => {
+	 this.elem.style.transition = 'initial'
+	 this.draggable.position() // tell PlainDraggable to recalculate its internal idea of the element's position
+	 this.draggable.disabled = false
+      }, 500)
+   }
+
+   this.dom_initialize = () => {
+      this.draggable = new PlainDraggable(this.elem, {containment: {left: 0, top: 0, width:'100%', height:'100%'}})
+      this.draggable.onDragEnd = this.return_to_start
    }
 
    // this is a special function which is called by JSON.serialize(); returns the json representation for a Thought
@@ -34,6 +58,7 @@ function ThoughtCanvas(canvas_container) {
    this.add_thought = function(thought_text) {
       let thought = new Thought(thought_text)
       this.canvas_container.appendChild(thought.elem);
+      thought.dom_initialize()
       this.thoughts.push(thought);
 
       window.save_thoughts(this.thoughts);

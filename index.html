@@ -10,12 +10,6 @@
 
 <body>	
 
-  <div id="ctdlgpt">
-    <navbar>
-    </navbar>
-  </div>
-
-
   <div id="mittens_container">
     <h1>
       <em>M</em>
@@ -28,29 +22,16 @@
     </h1>
   </div>
 
-  <!-- <div id="sort&#45;box&#45;container"> -->
-  <!--   <div class="sort&#45;box"> -->
-  <!--     Shopping List -->
-  <!--   </div> -->
-  <!--   <div class="sort&#45;box"> -->
-  <!--     Doable actions and actionable do's -->
-  <!--   </div> -->
-  <!--   <div class="sort&#45;box"> -->
-  <!--     Active Quest Chains -->
-  <!--   </div> -->
-  <!--   <div class="sort&#45;box"> -->
-  <!--     Habits -->
-  <!--   </div> -->
-  <!--   <div class="sort&#45;box"> -->
-  <!--     DO IT NAOW! -->
-  <!--   </div> -->
-  <!--   <div class="sort&#45;box"> -->
-  <!--     Complex Tasks -->
-  <!--   </div> -->
-  <!--   <div class="sort&#45;box"> -->
-  <!--     You did something! -->
-  <!--   </div> -->
-  <!-- </div> -->
+  <div id="ctdlgpt">
+    <navbar></navbar>
+
+    <!-- <div class="tabs"> -->
+    <!--   <thought&#45;canvas></sorter&#45;box> -->
+    <!--   <sorter&#45;box></sorter&#45;box> -->
+    <!-- </div> -->
+
+  </div>
+
 
   <div id="input-bar">
     <textarea id="input-bar-input" type="text" placeholder="Type a thought"></textarea>
@@ -59,8 +40,33 @@
   <div id="thought-canvas-container">
   </div>
 
+  <div id="sort-box-container">
+    <div class="sort-box">
+      Shopping List
+    </div>
+    <div class="sort-box">
+      Doable actions and actionable do's
+    </div>
+    <div class="sort-box">
+      Active Quest Chains
+    </div>
+    <div class="sort-box">
+      Habits
+    </div>
+    <div class="sort-box">
+      DO IT NAOW!
+    </div>
+    <div class="sort-box">
+      Complex Tasks
+    </div>
+    <div class="sort-box">
+      You did something!
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <!-- <script src="./thought_canvas.js"></script> -->
+  <script src="./plain-draggable.min.js"></script>
+  <script src="./thought_canvas.js"></script>
   <script src="./frontend.js"></script>
 
 </body>
