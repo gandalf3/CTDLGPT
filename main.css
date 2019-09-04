@@ -75,6 +75,8 @@ body {
     padding:10px 5px;
     box-sizing:border-box;
     border:1px dashed cyan;
+    background-color: rgba(102, 0, 102,0.4);
+    color:white;
 }
 
 
