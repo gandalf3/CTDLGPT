@@ -6,6 +6,13 @@ function Thought(text) {
    // store the actual data on in "this" so we can access it later
    this.text = text;
 
+   // what pile this thought has been sorted to
+   // will be assigned to a string at some point
+   this.sorting = null
+
+   // are we done with this thought? of course not :(
+   this.done = false
+
    // we'll use this.draggable for storing the PlainDraggable object associated
    // with this.elem later on, see this.dom_initialize
    this.draggable = null
