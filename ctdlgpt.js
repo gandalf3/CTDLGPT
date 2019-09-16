@@ -25,6 +25,18 @@ class CTDLGPT {
       return thought;
    }
 
+   delete_thought(thought) {
+      // find the index of the thought we're supposed to remove
+      let idx = this.thoughts.indexOf(thought)
+      // indexOf returns -1 if the item we're looking for (thought) doesn't exist, so we don't remove anything in that case
+      if (idx != -1) { //
+	 // delete 1 element starting at idx
+	 this.thoughts.splice(idx, 1)
+      }
+      // also tell the thought instance to remove its stuff
+      thought.remove()
+   }
+
    get_thoughts() {
       return this.thoughts;
    }

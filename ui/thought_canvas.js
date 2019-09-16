@@ -82,7 +82,7 @@ class ThoughtDisplay {
 class ThoughtCanvas {
   constructor(element) {
     this.elem = element;
-    this.thoughts = [];
+    this.displayed_thoughts = [];
     this.sorting_filter = 'inbox';
 
     // this.controls = ThoughtCanvasControls
@@ -98,6 +98,8 @@ class ThoughtCanvas {
     for (let elem of document.getElementsByClassName('sort-box')) {
       // this.sort_boxes.push(new ThoughtSorter(elem));
       this.sort_boxes.push(elem);
+
+      elem.addEventListener('click', (ev) => { this.set_sorting(ev.target.parentElement.getAttribute('href').split('#')[1]) });
     }
 
   }
@@ -123,37 +125,44 @@ class ThoughtCanvas {
     }.bind({TC: this, TD: td});
 
     this.elem.appendChild(td.elem);
+    this.displayed_thoughts.push(td);
   }
 
-  // removes the provided thought from the array and saves it
-  remove_thought(thought) {
+  // removes the thoughtdisplay from canvas display
+  remove_thought(thoughtdisplay) {
+      // find the index of the thought we're supposed to remove
+      // let idx = this.thoughts.indexOf(thought)
+      // // indexOf returns -1 if the item we're looking for (thought) doesn't exist, so we don't remove anything in that case
+      // if (idx != -1) { //
+	//  // delete 1 element starting at idx
+	//  this.thoughts.splice(idx, 1)
+      // }
+      // also tell the thought instance to remove its stuff
+      thoughtdisplay.elem.remove();
+  }
 
-    // find the index of the thought we're supposed to remove
-    let idx = this.thoughts.indexOf(thought)
-    // indexOf returns -1 if the item we're looking for (thought) doesn't exist, so we don't remove anything in that case
-    if (idx != -1) { //
-      // delete 1 element starting at idx
-      this.thoughts.splice(idx, 1)
+  clear_thoughts() {
+    for (let td of this.displayed_thoughts) {
+      td.elem.remove();
     }
-    // also tell the thought instance to remove its stuff
-    thought.remove()
-
-    window.save_thoughts(this.thoughts)
   }
 
   // yay O(1) algorithms for no reason woo
-  update() {
-    console.log('excusme')
-    window.save_thoughts(this.thoughts)
-    // the brute-force way
-    for (thought of this.thoughts) {
-      if (thought.sorting != this.sort_filter) {
-	thought.remove()
-      }
-      if (thought.draggable) {
-	thought.draggable.position()
+  refresh() {
+    this.clear_thoughts();
+    for (let thought of CTDLGPT.get_thoughts()) {
+      console.log(thought);
+      if (thought.sorting == this.sorting_filter) {
+	this.add_thought(thought);
       }
     }
+  }
+
+  set_sorting(sorting) {
+    this.sorting_filter = sorting;
+    document.getElementById('title').textContent = this.sorting_filter;
+
+    this.refresh();
   }
 
   // :clap:
