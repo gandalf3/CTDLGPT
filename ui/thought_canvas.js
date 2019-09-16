@@ -31,6 +31,10 @@ class ThoughtInput {
 // An object which contains everything used by our *representation* of a Thought
 class ThoughtDisplay {
   constructor(thought) {
+    console.log("new thoughtdisplay", thought);
+
+    this.deleteHandler = null;
+
     // store the actual Thought in "this" so we can access it later
     this.thought = thought;
 
@@ -47,7 +51,7 @@ class ThoughtDisplay {
     closebtn.classList.add("closebutton")
     closebtn.textContent = 'X'
     closebtn.addEventListener('click', (ev) => {
-      TC.remove_thought(this)
+      if (this.deleteHandler) {this.deleteHandler()};
     })
     // insert the "closebutton" div in the thought div
     this.elem.appendChild(closebtn)
@@ -82,7 +86,6 @@ class ThoughtDisplay {
 class ThoughtCanvas {
   constructor(element) {
     this.elem = element;
-    this.displayed_thoughts = [];
     this.sorting_filter = 'inbox';
 
     // this.controls = ThoughtCanvasControls
@@ -90,6 +93,9 @@ class ThoughtCanvas {
     this.elem.appendChild(this.thought_input.elem)
 
     this.thought_input.onAdd = function(thought) {
+      thought.sorting = this.sorting_filter;
+      // TODO: use additional methods on ThoughtCanvas to put this in a more reasonable spot
+      CTDLGPT.save();
       this.clap();
       this.add_thought(thought);
     }.bind(this);
@@ -102,6 +108,11 @@ class ThoughtCanvas {
       elem.addEventListener('click', (ev) => { this.set_sorting(ev.target.parentElement.getAttribute('href').split('#')[1]) });
     }
 
+    this.displayed_thoughts = [];
+    for (let thought of CTDLGPT.get_thoughts()) {
+      this.add_thought(thought);
+    };
+
   }
 
   // this function creates a new Thought instance and adds its element (elem)
@@ -111,6 +122,12 @@ class ThoughtCanvas {
   add_thought(thought) {
     let td = new ThoughtDisplay(thought)
     let drag = new DragSystem(td.elem);
+
+    td.deleteHandler = () => {
+      CTDLGPT.delete_thought(td.thought);
+      CTDLGPT.save();
+      td.remove();
+    }
 
     drag.onDrop = function(ev) {
       console.log("dropp", this);
