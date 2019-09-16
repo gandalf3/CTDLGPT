@@ -86,7 +86,7 @@ class ThoughtDisplay {
 class ThoughtCanvas {
   constructor(element) {
     this.elem = element;
-    this.sorting_filter = 'inbox';
+    this.sorting_filter = null;
 
     // this.controls = ThoughtCanvasControls
     this.thought_input = new ThoughtInput();
@@ -109,9 +109,11 @@ class ThoughtCanvas {
     }
 
     this.displayed_thoughts = [];
-    for (let thought of CTDLGPT.get_thoughts()) {
-      this.add_thought(thought);
-    };
+    // for (let thought of CTDLGPT.get_thoughts()) {
+    //   this.add_thought(thought);
+    // };
+    this.set_sorting('inbox');
+    this.refresh();
 
   }
 
