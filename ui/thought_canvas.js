@@ -137,6 +137,7 @@ class ThoughtCanvas {
 	this.TD.thought.sorting = dropped_on.parentElement.getAttribute('href').split('#')[1]
 	if (this.TC.sorting_filter != this.TD.thought.sorting) {
 	  this.TD.remove();
+	  CTDLGPT.save();
 	}
       }
     }.bind({TC: this, TD: td});
