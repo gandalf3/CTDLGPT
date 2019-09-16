@@ -28,11 +28,10 @@ class ThoughtInput {
   }
 }
 
-// An object which contains everything used by our representation of a Thought
+// An object which contains everything used by our *representation* of a Thought
 class ThoughtDisplay {
   constructor(thought) {
-    console.log("started with", thought);
-    // store the actual data on in "this" so we can access it later
+    // store the actual Thought in "this" so we can access it later
     this.thought = thought;
 
     // construct a div to represent the thought, give it a class so we can style
