@@ -2,7 +2,8 @@
 
 <head>
   <title>COOL TO-DO LIST GAME PROGRAM THING</title>
-  <meta charset='utf-8'/>
+  <meta charset='utf-8'>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
   <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
   <link rel='stylesheet' type='text/css' href="main.css">
   <link rel='stylesheet' type='text/css' href="mittens.css">
@@ -22,20 +23,13 @@
     </h1>
   </div>
 
-  <!-- <div id="ctdlgpt"> -->
-  <!--   <navbar></navbar> -->
-  <!--  -->
-  <!--   <!&#45;&#45; <div class="tabs"> &#45;&#45;> -->
-  <!--   <!&#45;&#45;   <thought&#38;#45;canvas></sorter&#38;#45;box> &#45;&#45;> -->
-  <!--   <!&#45;&#45;   <sorter&#38;#45;box></sorter&#38;#45;box> &#45;&#45;> -->
-  <!--   <!&#45;&#45; </div> &#45;&#45;> -->
-  <!--  -->
-  <!-- </div> -->
-
-
-  <div id="input-bar">
-    <textarea id="input-bar-input" type="text" placeholder="Type a thought"></textarea>
+  <div id="nav-bar">
+    <h1 id="title"></h1>
   </div>
+
+  <!-- <div id="input&#45;bar"> -->
+  <!--   <textarea id="input&#45;bar&#45;input" type="text" placeholder="Type a thought"></textarea> -->
+  <!-- </div> -->
 
   <div id="thought-canvas-container">
   </div>
@@ -86,11 +80,8 @@
     </a>
   </div>
 
-  <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
-  <script src="./plain-draggable.min.js"></script>
-  <script src="./thought.js"></script>
-  <script src="./thought_canvas.js"></script>
-  <script src="./inbox.js"></script>
-  <!-- <script src="./frontend.js"></script> -->
+  <!-- <script src="./ui/main.js"></script> -->
+  <script src="./ui/thought_canvas.js"></script>
+  <script src="./ui/inbox.js"></script>
 
 </body>
