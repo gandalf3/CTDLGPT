@@ -2,28 +2,30 @@
 
 const CTDLGPT = window.CTDLGPT;
 
+// handles inputs for thought creation
 class ThoughtInput {
   constructor(input_element) {
-
+    // create an html element for the main text input
     this.elem = document.createElement('textarea');
-    this.callback = null;
 
+    // a place to put the callback function we call when a new thought is inputted
+    this.onAdd = null;
+
+    // key release handler
     this.elem.addEventListener('keyup', event => {
+      // do nothing if the key code is not the enter key
       if (event.code != 'Enter') { return; }
 
+      // create a new thought
       let thought = CTDLGPT.create_thought(this.elem.value);
 
-      if (this.callback) { this.callback(thought) };
+      // call our callback, if it has been set
+      if (this.onAdd) { this.onAdd(thought) };
 
+      // clear the input
       this.elem.value = '';
     });
-
   }
-
-  set_callback(callback) {
-    this.callback = callback;
-  }
-
 }
 
 // An object which contains everything used by our representation of a Thought
@@ -68,86 +70,6 @@ class ThoughtDisplay {
     }
 
     new DragSystem(this.elem);
-
-    // this._dragstart = false;
-    // this.dragging = false;
-    //
-    // this.elem.addEventListener('mousedown', (ev) => {
-    //   this._dragstart = true;
-    //   console.log("dragstart");
-    // });
-    //
-    // this.elem.addEventListener('mousemove', (ev) => {
-    //   if (this._dragstart) {
-	// this.dragging = true;
-	// this._dragstart = false;
-    //   }
-    //   if (! this.dragging) { return; }
-    //   console.log("dragging");
-    // });
-    //
-    // document.addEventListener('mouseup', (ev) => {
-    //   if (this.dragging) {
-	// this.dragging = false;
-    //   }
-    //   console.log("dragstop")
-    // });
-    //
-
-    // callback handler for plaindraggable, called when drag ends
-    // currently we just return the element's position to normal, first
-    // setting up the transition css properties so it glides back smoothly
-    // this.on_drag_end = () => {
-    //
-    //   if (this.last_over_ev != null && this.last_over_ev.classList.contains('sort-box')) {
-	// // oh god this is NOT a good way to do this but whatever
-	// this.sorting = this.last_over_ev.parentElement.getAttribute('href').split('#')[1]
-	// // we just hope TC exists now eek
-	// TC.update()
-    //   }
-    //
-    //   // disable dragging while it goes back
-    //   this.draggable.disabled = true
-    //   this.elem.style.transition = 'transform .5s'
-    //   this.elem.style.transform = 'translate(0, 0)'
-    //
-    //   // after .5s (500ms) we re-enable dragging and turn off the transition stuff
-    //   // it's a bit hackish but we can fix problems it creates when they show up I suppose
-    //   window.setTimeout(() => {
-	// this.elem.style.transition = 'initial'
-	// // tell PlainDraggable to recalculate its internal idea of the element's position, now that we've changed it
-	// this.draggable.position() 
-	// this.draggable.disabled = false
-    //   }, 500)
-    //
-    //   document.removeEventListener('mousemove', this.over_sort_box)
-    //   this.elem.style.pointerEvents = 'all'
-    // }
-    //
-    // // store the last element we were over
-    // this.last_over_ev = null
-    // this.over_sort_box = (ev) => {
-    //   this.last_over_ev = document.elementFromPoint(ev.clientX, ev.clientY)
-    // }
-    // this.on_drag_start = () => {
-    //   // disable pointer events so we can detect the element underneith
-    //   this.elem.style.pointerEvents = 'none'
-    //   document.addEventListener('mousemove', this.over_sort_box)
-    // }
-    //
-    // // draggable wants the element to actually exist in the document first, so we can't enable draggable until it's added.
-    // // so this function is to be called by whatever outside code actually inserts our this.elem into te document, after it has done so
-    // // this is a bit of a mess, but thats why this version of CTDLGPT is < skateboard
-    // this.dom_initialize = () => {
-    //   this.draggable = new PlainDraggable(this.elem, {containment: {left: 0, top: 0, width:'100%', height:'100%'}})
-    //   this.draggable.onDragStart = this.on_drag_start
-    //   this.draggable.onDragEnd = this.on_drag_end
-    // }
-    //
-    // // this is a special function which is called by JSON.serialize(); returns the json representation for a Thought
-    // this.toJSON = function() {
-    //   return { text: this.text, sorting: this.sorting, done: this.done };
-    // }
   }
 }
 
@@ -161,8 +83,7 @@ class ThoughtCanvas {
     this.thought_input = new ThoughtInput();
     this.canvas_container.appendChild(this.thought_input.elem)
 
-    this.thought_input.callback = function(thought) {
-      console.log("callback", this, thought);
+    this.thought_input.onAdd = function(thought) {
       this.clap();
       this.add_thought(thought);
     }.bind(this);
