@@ -67,25 +67,39 @@ class ThoughtDisplay {
       // for now all we do is remove this.elem from the document
       this.elem.remove()
     }
-
-    new DragSystem(this.elem);
   }
 }
 
+// TODO: objectify sort boxes
+// class ThoughtSorter {
+//   constructor(element) {
+//     this.elem = element;
+//     // extract sorting from the html for now but like, don't do this
+//     this.sorting = this.elem.parentElement.getAttribute('href').split('#')[1]
+//   }
+// }
 
 class ThoughtCanvas {
-  constructor(container_element) {
-    this.canvas_container = container_element;
+  constructor(element) {
+    this.elem = element;
     this.thoughts = [];
+    this.sorting_filter = 'inbox';
 
     // this.controls = ThoughtCanvasControls
     this.thought_input = new ThoughtInput();
-    this.canvas_container.appendChild(this.thought_input.elem)
+    this.elem.appendChild(this.thought_input.elem)
 
     this.thought_input.onAdd = function(thought) {
       this.clap();
       this.add_thought(thought);
     }.bind(this);
+
+    this.sort_boxes = [];
+    for (let elem of document.getElementsByClassName('sort-box')) {
+      // this.sort_boxes.push(new ThoughtSorter(elem));
+      this.sort_boxes.push(elem);
+    }
+
   }
 
   // this function creates a new Thought instance and adds its element (elem)
@@ -93,9 +107,22 @@ class ThoughtCanvas {
   // saves the json representation to a file using the preloaded
   // window.save_thoughts function (from preload.js)
   add_thought(thought) {
-    console.log("adding", thought);
     let td = new ThoughtDisplay(thought)
-    this.canvas_container.appendChild(td.elem);
+    let drag = new DragSystem(td.elem);
+
+    drag.onDrop = function(ev) {
+      console.log("dropp", this);
+      // TODO hackish but not-as-hackish-as-last-time™ quick and dirty sorting function
+      let dropped_on = document.elementFromPoint(ev.clientX, ev.clientY);
+      if (dropped_on.classList.contains('sort-box')) {
+	this.TD.thought.sorting = dropped_on.parentElement.getAttribute('href').split('#')[1]
+	if (this.TC.sorting_filter != this.TD.thought.sorting) {
+	  this.TD.remove();
+	}
+      }
+    }.bind({TC: this, TD: td});
+
+    this.elem.appendChild(td.elem);
   }
 
   // removes the provided thought from the array and saves it

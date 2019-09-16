@@ -3,6 +3,7 @@
 class DragSystem {
   constructor(element, options) {
     // if (onDrop in options) {};
+    this.onDrop = null;
     this.elem = element;
     this.elem.addEventListener('mousedown', this.handle_drag_start.bind(this));
     this.store_initial_styles();
@@ -50,6 +51,7 @@ class DragSystem {
   handle_drag_stop(ev) {
     this.placeholder_elem.remove();
     this.restore_initial_styles();
+    if (this.onDrop) {this.onDrop(ev)};
   }
 
   cleanup() {
