@@ -9,6 +9,7 @@ function createWindow() {
 	let win = new electron.BrowserWindow({
 		width: 800,
 		height: 600,
+		icon: path.join(app.getAppPath(), "themes/MƎTTINS/icon.png"),
 		webPreferences: {
 			preload: path.join(app.getAppPath(), 'preload.js')
 		},
