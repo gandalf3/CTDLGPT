@@ -4,7 +4,7 @@
   "description": "Cool To-Do List Game Program Thing",
   "main": "main.js",
   "dependencies": {
-    "electron": "^5.0.8"
+    "electron": "^7.2.4"
   },
   "devDependencies": {},
   "scripts": {
