@@ -1,3 +1,103 @@
-#thought-canvas {
-	border: 1px solid black;
+html, body {
+    margin:0;
 }
+body {
+    background-color:#4E676C;
+}
+
+#input-bar {
+    text-align:center;
+}
+#input-bar-input {
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    max-width: 500px;
+    width: 80vw;
+    font-size: 17px;
+    font-family: 'Josefin Sans';
+    border:none;
+    outline: none;
+    background: cyan;
+}
+
+#thought-canvas-container {
+    display: flex;
+    height:100%;
+    flex-wrap: wrap;
+    align-items:flex-start;
+    align-content:flex-start;
+}
+
+.thought {
+    font-family:'Comic Sans MS';
+    background-color:magenta;
+    display:inline-block;
+    margin:5px;
+    padding:10px;
+    position:relative;
+}
+
+.thought:hover .closebutton {
+    visibility:visible;
+}
+
+.thought .closebutton {
+    border:none;
+    visibility:hidden;
+    display: inline-block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    border: none;
+    background: red;
+    padding:0;
+    cursor:pointer;
+    color:white;
+}
+
+
+.thought:hover .checkbutton {
+    visibility:visible;
+}
+
+.thought .checkbutton {
+    border:none;
+    visibility:hidden;
+    display: inline-block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    right: 0;
+    border: none;
+    background: green;
+    padding:0;
+    cursor:pointer;
+    color:white;
+}
+
+#sort-box-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-evenly;
+    align-content:space-evenly
+}
+.sort-box {
+    margin:10px;
+    display:inline-block;
+    width:10vw;
+    height:10vw;
+    min-width:100px;
+    min-height:100px;
+    text-align:center;
+    font-family:sans-serif;
+    padding:10px 5px;
+    box-sizing:border-box;
+    border:1px dashed cyan;
+    background-color: rgba(102, 0, 102,0.4);
+    color:white;
+}
+

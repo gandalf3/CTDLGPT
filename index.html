@@ -1,25 +1,87 @@
 <!DOCTYPE html>
 
 <head>
-	<title>COOL TO-DO LIST GAME PROGRAM THING</title>
-	<meta charset='utf-8'/>
-	<link rel="stylesheet" href="main.css">
-	<style>
-	body {
-		background-image: url("https://emojis.wiki/emoji-pics/twitter/clapping-hands-twitter.png");
-	}
-
-</style>
+  <title>COOL TO-DO LIST GAME PROGRAM THING</title>
+  <meta charset='utf-8'>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+  <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+  <link rel='stylesheet' type='text/css' href="main.css">
+  <link rel='stylesheet' type='text/css' href="mittens.css">
 </head>
-<body>
-	<div id="input-bar">
-		<input id="input-bar-input" type="text" placeholder="Type a thought"></input>
-	</div>
-	<div id="thought-canvas-container">
-		<canvas width="1200px" height="900px" id="thought-canvas">
-		</canvas>
-	</div>
 
-	<script src="./thought_canvas.js"></script>
-	
+<body>	
+
+  <div id="mittens_container">
+    <h1>
+      <em>M</em>
+      <em class="planet left">I</em>
+      <em>T</em>
+      <em>T</em>
+      <em class="planet right">E</em>
+      <em>N</em>
+      <em>S</em>
+    </h1>
+  </div>
+
+  <div id="nav-bar">
+    <h1 id="title"></h1>
+  </div>
+
+  <!-- <div id="input&#45;bar"> -->
+  <!--   <textarea id="input&#45;bar&#45;input" type="text" placeholder="Type a thought"></textarea> -->
+  <!-- </div> -->
+
+  <div id="thought-canvas-container">
+  </div>
+
+  <div id="sort-box-container">
+
+      <a href="index.html#inbox">
+          <div class="sort-box">
+            Inbox
+          </div>
+        </a>
+    
+
+    <a href="index.html#shop">
+      <div class="sort-box">
+        Shopping List
+      </div>
+    </a>
+
+    <a href="index.html#onestep">
+      <div class="sort-box">
+        One Step
+      </div>
+    </a>
+
+    <a href="index.html#habit">
+      <div class="sort-box">
+        Habits
+      </div>
+    </a>
+
+    <a href="index.html#complex">
+      <div class="sort-box">
+        Complex Tasks
+      </div>
+    </a>
+
+    <a href="index.html#backburner">
+      <div class="sort-box">
+        Back Burner
+      </div>
+    </a>
+
+    <a href="index.html#done">
+      <div class="sort-box">
+        You did something!
+      </div>
+    </a>
+  </div>
+
+  <script src="./ui/drag_system.js"></script>
+  <script src="./ui/thought_canvas.js"></script>
+  <script src="./ui/inbox.js"></script>
+
 </body>
